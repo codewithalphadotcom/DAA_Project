@@ -3,7 +3,7 @@
  * Handles file parsing with error handling
  */
 
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { ParseResult } from '../utils/fileParser';
 
 export interface UseFileParserResult<T> {
@@ -21,30 +21,32 @@ export function useFileParser<T>(
   fileContent: string,
   parserFn: (content: string) => ParseResult<T>
 ): UseFileParserResult<T> {
-  const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!fileContent.trim()) {
-      setData(null);
-      setError(null);
-      return;
+  const result = useMemo(() => {
+    const content = fileContent.trim();
+    if (!content) {
+      return {
+        data: null,
+        error: null,
+        isValid: false,
+      };
     }
 
-    const result = parserFn(fileContent);
+    const parseResult = parserFn(content);
     
-    if (result.success && result.data) {
-      setData(result.data);
-      setError(null);
+    if (parseResult.success && parseResult.data) {
+      return {
+        data: parseResult.data,
+        error: null,
+        isValid: true,
+      };
     } else {
-      setData(null);
-      setError(result.error || 'Failed to parse file');
+      return {
+        data: null,
+        error: parseResult.error || 'Failed to parse file',
+        isValid: false,
+      };
     }
   }, [fileContent, parserFn]);
 
-  return {
-    data,
-    error,
-    isValid: data !== null && error === null,
-  };
+  return result;
 }

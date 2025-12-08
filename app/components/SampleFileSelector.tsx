@@ -64,7 +64,7 @@ export default function SampleFileSelector({ selectedAlgorithm, onFileSelect }: 
             <div className="border border-border bg-card/30">
                 <div className="p-3">
                     <p className="text-xs text-muted-foreground font-mono">
-                        // Select algorithm first
+                        {"// Select algorithm first"}
                     </p>
                 </div>
             </div>

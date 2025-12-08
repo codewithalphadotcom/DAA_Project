@@ -33,14 +33,23 @@ export function useStepPlayback(
 
   // Auto-advance when playing
   useEffect(() => {
-    if (isPlaying && currentStep < totalSteps - 1) {
-      const timer = setTimeout(() => {
-        setCurrentStep(prev => prev + 1);
-      }, interval);
-      return () => clearTimeout(timer);
-    } else if (currentStep >= totalSteps - 1) {
-      setIsPlaying(false);
+    if (!isPlaying) return;
+    
+    if (currentStep >= totalSteps - 1) {
+      // Already at the end, stop playing
+      return;
     }
+    
+    const timer = setTimeout(() => {
+      setCurrentStep(prev => {
+        const next = prev + 1;
+        if (next >= totalSteps - 1) {
+          setIsPlaying(false);
+        }
+        return next;
+      });
+    }, interval);
+    return () => clearTimeout(timer);
   }, [isPlaying, currentStep, totalSteps, interval]);
 
   const play = useCallback(() => {

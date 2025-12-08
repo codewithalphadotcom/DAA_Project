@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import ClosestPairVisualizer from './ClosestPairVisualizer';
 import IntegerMultVisualizer from './IntegerMultVisualizer';
 
@@ -15,15 +15,19 @@ interface VisualizerProps {
 export default function Visualizer({
     algorithm,
     fileContent,
-    fileName,
-    isProcessing,
-    setIsProcessing,
 }: VisualizerProps) {
+    // Create a key that changes when inputs change to reset state
+    const resetKey = useMemo(() => `${fileContent}-${algorithm}`, [fileContent, algorithm]);
     const [started, setStarted] = useState(false);
+    const [lastResetKey, setLastResetKey] = useState(resetKey);
 
-    useEffect(() => {
-        setStarted(false);
-    }, [fileContent, algorithm]);
+    // Check if we need to reset
+    if (resetKey !== lastResetKey) {
+        setLastResetKey(resetKey);
+        if (started) {
+            setStarted(false);
+        }
+    }
 
     return (
         <div className="h-full flex flex-col">

@@ -35,7 +35,6 @@ export function subtractStrings(num1: string, num2: string): string {
 
   // Pad num2 with zeros if needed
   const paddedNum2 = num2.padStart(num1.length, '0');
-  let j = paddedNum2.length - 1;
 
   while (i >= 0) {
     let digit1 = parseInt(num1[i]) - borrow;

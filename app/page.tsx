@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import FileUpload from './components/FileUpload';
-import AlgorithmSelector from './components/AlgorithmSelector';
 import SampleFileSelector from './components/SampleFileSelector';
 import Visualizer from './components/Visualizer';
 
@@ -289,7 +288,7 @@ export default function Home() {
                 </div>
                 <div className="flex space-x-1">
                   {[...Array(8)].map((_, i) => (
-                    <div key={i} className="w-0.5 h-4" style={{ background: 'var(--border)', opacity: Math.random() }}></div>
+                    <div key={i} className="w-0.5 h-4" style={{ background: 'var(--border)', opacity: 0.3 + (i * 0.08) }}></div>
                   ))}
                 </div>
               </div>

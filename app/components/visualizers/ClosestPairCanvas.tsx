@@ -5,7 +5,7 @@
 
 'use client';
 
-import { Point, ClosestPairStep } from '../../algorithms/closestPair/types';
+import { ClosestPairStep } from '../../algorithms/closestPair/types';
 import { Scaler, scalePoint, scaleX } from '../../utils/coordinateScaling';
 
 interface ClosestPairCanvasProps {
