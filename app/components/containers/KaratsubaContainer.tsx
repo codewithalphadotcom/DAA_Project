@@ -12,8 +12,8 @@ import { useStepPlayback } from '../../hooks/useStepPlayback';
 import StepControls from '../ui/StepControls';
 import StepDescription from '../ui/StepDescription';
 import PanelHeader from '../ui/PanelHeader';
-import KaratsubaStepDisplay from './KaratsubaStepDisplay';
-import KaratsubaInfoPanel from './KaratsubaInfoPanel';
+import KaratsubaStepDisplay from '../visualizers/KaratsubaStepDisplay';
+import KaratsubaInfoPanel from '../visualizers/KaratsubaInfoPanel';
 
 interface KaratsubaContainerProps {
   fileContent: string;

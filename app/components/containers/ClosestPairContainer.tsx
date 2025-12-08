@@ -13,8 +13,8 @@ import { useStepPlayback } from '../../hooks/useStepPlayback';
 import StepControls from '../ui/StepControls';
 import StepDescription from '../ui/StepDescription';
 import PanelHeader from '../ui/PanelHeader';
-import ClosestPairCanvas from './ClosestPairCanvas';
-import ClosestPairInfoPanel from './ClosestPairInfoPanel';
+import ClosestPairCanvas from '../visualizers/ClosestPairCanvas';
+import ClosestPairInfoPanel from '../visualizers/ClosestPairInfoPanel';
 
 interface ClosestPairContainerProps {
   fileContent: string;
